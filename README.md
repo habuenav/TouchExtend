@@ -1,8 +1,8 @@
 #### **[[ENGLISH]](#spanish)**
 
-# TouchButton
+# TouchExtend
 
-TouchButton es una biblioteca diseñada para simplificar el uso de los pines táctiles capacitivos con el ESP32, lo que le permite detectar fácilmente interacciones táctiles como clics, toque sostenido y soltar.
+TouchButton es una biblioteca diseñada para simplificar el uso de los pines táctiles capacitivos de las placas ESP32, lo que le permite detectar fácilmente interacciones táctiles como clics, toque sostenido y soltar, ademas permite usar pines ADC como pines capacitivos esto amplia el numero de pines disponibles para ser usados con este fin, Esta libreria te permite usar pines con soporte ADC como si fueran touch en placas ESP32-C3. 
 
 <p align="center">
 <img width="25%" src='https://i.postimg.cc/15tXcXJD/touch.png' title=''/>
@@ -14,6 +14,7 @@ TouchButton es una biblioteca diseñada para simplificar el uso de los pines tá
 ## Caracteristicas
 
 - **Optimizado para ESP32**: utiliza la funcionalidad del sensor táctil integrado.
+- **Mas pines touch**: utiliza tecnicas que permite usar pines con soporte ADC como pines capacitivos.
 - **Sensibilidad personalizable**: establece el umbral de sensibilidad táctil para adaptarse a diferentes necesidades.
 - **Interacciones táctiles**: detecta varios eventos táctiles, incluidos clics únicos, clics múltiples, presiones y liberaciones.
 - **Ajuste del umbral**: establece automáticamente la sensibilidad en función de una lectura inicial.
@@ -21,7 +22,8 @@ TouchButton es una biblioteca diseñada para simplificar el uso de los pines tá
 ## Requirementos
 
 - **Board** : Probado en tarjetas Esp32.
-- **Arduino IDE** : Recommended 1.8.10 or higher
+- **Arduino IDE** : Recommended 1.8.10 or superior
+El uso de pines ADC como pines touch o capacitivos, puede requerir el uso de una resistencia de entre 2 y 4 M Ohm, recomendado 3.3M Ohm, esta resistencia solo es necesaria con una de las tecnicas disponibles.
 
 ## Instalacion
 
@@ -31,10 +33,13 @@ TouchButton es una biblioteca diseñada para simplificar el uso de los pines tá
 
 O puedes extraer el archivo ZIP del paso 1 en el directorio de bibliotecas de Arduino.
 
+## Montaje 
+
+
 ## Ejemplo
 
 ```
-#include <TouchButton.h>
+#include <TouchExt.h>
 #define TOUCH_PIN T0  // Define the touch pin (T0 is an example)
 tb touchButton(TOUCH_PIN, 70); // Create a touchButton instance with a 70% sensitivity threshold.
 
