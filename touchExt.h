@@ -3,9 +3,10 @@
 
 #include <Arduino.h>
 #ifdef SOC_TOUCH_SENSOR_SUPPORTED
-#define TOUCH_SUPPORT  
+#define TOUCH_SUPPORT  // Marca para placas sin touch (como ESP32-C3)
 #include "driver/touch_pad.h"
 #endif
+
 
 #define interrupt_trigger_type RISING // Interrupción activada en un flanco ascendente
 #define pulldownTHRESHOLD 350 // Umbral para detectar toque
@@ -23,8 +24,8 @@
 // Modos de operación
 enum TouchMode {
   TOUCH_NATIVE, // Pines touch nativos (T0-T9)
-  ADC_PULLDOWN, // Pines ADC requiere resistencia pulldown externa de 1M ohm o mas
-  ADC_NO_RESISTOR // Pines ADC no requiere resistencia externa
+  ADC_PULLDOWN, // Pines ADC requiere resistencia pulldown externa de 2-4 Mohm 
+  ADC_PULLUP // Pines ADC no requiere resistencia externa
 };
 
 // Variable global para interrupciones
@@ -54,7 +55,7 @@ private:
     uint8_t _pin;
     uint8_t _threshold;
     uint16_t _adcPulldownThreshold; // Umbral para ADC_PULLDOWN
-    uint16_t _adcPullupThreshold; // Umbral para ADC_NO_RESISTOR
+    uint16_t _adcPullupThreshold; // Umbral para ADC_PULLUP
     TouchMode _mode;
     unsigned long _touchStart = 0;
     unsigned long _lastTouchStart = 0;
@@ -89,7 +90,7 @@ touchExt::touchExt(uint8_t pin, uint16_t threshold, TouchMode mode) : _pin(pin),
      pinMode(_pin, INPUT);
      attachInterrupt(digitalPinToInterrupt(_pin), button_interrupt_handler, RISING);
     }  
-  else if (_mode == ADC_NO_RESISTOR && digitalPinToAnalogChannel(_pin) >= 0) { _adcPullupThreshold = _threshold ? _threshold :  pullupTHRESHOLD; }
+  else if (_mode == ADC_PULLUP && digitalPinToAnalogChannel(_pin) >= 0) { _adcPullupThreshold = _threshold ? _threshold :  pullupTHRESHOLD; }
  }
 
 // Promediar lecturas analógicas
@@ -137,7 +138,7 @@ inline bool touchExt::isTouched() {
     return false;
   }
  }
- else if (_mode == ADC_NO_RESISTOR) // tecnica a pines adc y no requiere usar resistencias, solo un truco de cambiar el pinmode y por eso no puede usarse interrupciones.
+ else if (_mode == ADC_PULLUP) // tecnica a pines adc y no requiere usar resistencias, solo un truco de cambiar el pinmode y por eso no puede usarse interrupciones.
    { 
           unsigned long startTime = millis();
          while (millis() - startTime < READ_TIME) {
