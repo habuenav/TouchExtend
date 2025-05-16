@@ -2,7 +2,7 @@
 
 # TouchExtend
 
-TouchButton es una biblioteca diseñada para simplificar el uso de los pines táctiles capacitivos de las placas ESP32, lo que le permite detectar fácilmente interacciones táctiles como clics, toque sostenido y soltar, ademas permite usar pines ADC como pines capacitivos esto amplia el numero de pines disponibles para ser usados con este fin, Esto habilita en placas como la ESP32-C3 que no tiene pines touch nativos usar pines ADC como capacitivos por medio de dos tecnicas distintas.
+TouchExtend es una biblioteca diseñada para simplificar el uso de los pines táctiles capacitivos de las placas ESP32, lo que le permite detectar fácilmente interacciones táctiles como clics, toque sostenido y soltar, ademas permite usar pines ADC como pines capacitivos esto amplia el numero de pines disponibles para ser usados con este fin, Esto habilita en placas como la ESP32-C3 que no tiene pines touch nativos usar pines ADC como capacitivos por medio de dos tecnicas distintas.
 
 <p align="center">
   <img width="25.5%" src='https://i.postimg.cc/15tXcXJD/touch.png' title='ESP32 Touch nativo.'/>
@@ -99,7 +99,7 @@ Las contribuciones son bienvenidas. Si encuentras un problema o tienes una suger
 
 # TouchExtend
 
-TouchButton is a library designed to simplify the use of capacitive touch pins on ESP32 boards, allowing you to easily detect touch interactions such as clicks, hold and release, and also allows you to use ADC pins as capacitive pins, this expands the number of pins available to be used for this purpose. This enables boards like the ESP32-C3 that do not have native touch pins to use ADC pins as capacitive pins using two different techniques.
+TouchExtend is a library designed to simplify the use of capacitive touch pins on ESP32 boards, allowing you to easily detect touch interactions such as clicks, hold and release, and also allows you to use ADC pins as capacitive pins, this expands the number of pins available to be used for this purpose. This enables boards like the ESP32-C3 that do not have native touch pins to use ADC pins as capacitive pins using two different techniques.
 
 <p align="center">
   <img width="25.5%" src='https://i.postimg.cc/15tXcXJD/touch.png' title='ESP32 Touch nativo.'/>
