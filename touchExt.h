@@ -69,7 +69,7 @@ private:
 touchExt::touchExt(uint8_t pin, uint16_t threshold, TouchMode mode) : _pin(pin), _threshold(threshold),_mode(mode) {
 
      #ifdef TOUCH_SUPPORT
-     if (digitalPinToTouchChannel(_pin) >= 0 && _mode == TOUCH_NATIVE) {
+     if (_mode == TOUCH_NATIVE) {
     touch_pad_init();
     touch_pad_io_init(static_cast<touch_pad_t>(_pin));
     touch_pad_set_voltage(TOUCH_HVOLT_2V7, TOUCH_LVOLT_0V5, TOUCH_HVOLT_ATTEN_1V);
